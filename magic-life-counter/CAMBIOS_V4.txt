@@ -1,0 +1,2 @@
+V4: Nombres desplazados, distribuciones 3 y 4 con áreas iguales, corrección de paneles laterales girados, orientación vertical preferida y caché v4.
+Nota: el bloqueo físico de giro depende del navegador y sistema operativo.
