@@ -1,0 +1,1 @@
+V6: reconstrucción completa de CSS del tablero; contenido girado dimensionado por su rectángulo real; nombres centrados en zona superior; prueba escritorio con proporciones verticales. Mantiene almacenamiento local y funciones de partida.

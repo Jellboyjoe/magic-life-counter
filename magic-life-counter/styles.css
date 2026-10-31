@@ -1,35 +1,30 @@
 :root{font-family:system-ui,-apple-system,Segoe UI,sans-serif;color:#fff;background:#10121b}*{box-sizing:border-box}html,body,#app{height:100%;width:100%;margin:0}body{overscroll-behavior:none}button,input{font:inherit}button{cursor:pointer;touch-action:manipulation}.setup{min-height:100%;display:grid;place-items:center;padding:22px;background:radial-gradient(circle at 20% 10%,#35475b,#10121b 70%);overflow:auto}.setup-card{width:min(440px,100%);padding:26px;border:1px solid #ffffff24;border-radius:24px;background:#171b29;box-shadow:0 20px 80px #0007}.eyebrow{color:#e1bd7d;font-size:11px;letter-spacing:.25em;font-weight:800}h1{font-size:clamp(26px,6vw,40px);margin:9px 0}h2{font-size:14px;margin:25px 0 10px;color:#d9deeb}.setup p,.hint{color:#aeb7c9}.choices{display:flex;gap:7px;flex-wrap:wrap}.choices button{flex:1;min-width:44px;border:1px solid #465066;background:#262e42;color:#fff;padding:12px 8px;border-radius:10px;font-weight:800}.choices button.selected{background:#e2b66d;color:#161922;border-color:#e2b66d}.toggle{display:flex;align-items:center;gap:8px;font-size:13px;margin:25px 0}.primary{background:#e2b66d;border:0;border-radius:12px;padding:13px 18px;color:#17151c;font-weight:800;width:100%}.hint{font-size:12px;line-height:1.5}#game,#board{height:100%;width:100%}#board{display:grid;gap:3px;background:#0c0d12;padding:3px}.player{position:relative;min-width:0;min-height:0;overflow:hidden;background:var(--panel);isolation:isolate}.player::before{content:"";position:absolute;inset:0;background:linear-gradient(#0005,#0008),var(--image,none) center/cover no-repeat;z-index:-1}.player-content{height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;transform:rotate(var(--rotation,0deg));padding:5px}.name{font-weight:750;letter-spacing:.09em;font-size:clamp(9px,1.7vw,15px);text-shadow:0 1px 6px #000;max-width:75%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.life-row{width:100%;flex:1;display:flex;align-items:center;justify-content:center;min-height:0}.hit{width:28%;height:100%;display:grid;place-items:center;border:0;background:transparent;color:#ffffff99;font-size:clamp(19px,3.5vw,34px)}.life-value{width:44%;text-align:center;font-size:clamp(37px,min(11vw,15vh),110px);line-height:1;font-weight:800;letter-spacing:-.055em;text-shadow:0 3px 14px #0008;font-variant-numeric:tabular-nums;user-select:none}.quick{display:flex;gap:3px;width:100%;justify-content:center;max-width:360px}.quick button,.mini{background:#080a11a8;border:1px solid #ffffff30;color:white;border-radius:7px;min-height:28px;padding:4px 7px;font-weight:800;font-size:clamp(10px,1.5vw,14px)}.quick button{flex:1}.meta{display:flex;gap:8px;justify-content:center;margin-top:3px}.meta button{font-size:clamp(10px,1.4vw,13px);background:#080a11a8;border:1px solid #ffffff30;color:white;border-radius:8px;padding:4px 9px;min-height:27px}.flash{position:absolute;top:22%;left:50%;transform:translateX(-50%);font-size:clamp(24px,4vw,45px);font-weight:900;pointer-events:none;animation:rise .65s ease-out forwards;text-shadow:0 2px 8px #000}.flash.minus{color:#ff626e}.flash.plus{color:#67f3a0}@keyframes rise{0%{opacity:0;translate:0 12px}20%{opacity:1}100%{opacity:0;translate:0 -30px}}.menu-button{position:fixed;z-index:5;top:50%;left:50%;transform:translate(-50%,-50%);width:40px;height:40px;border-radius:50%;background:#171a28;border:2px solid #d8b879;color:#f4d99b;font-size:20px;box-shadow:0 2px 15px #0009}.modal{position:fixed;inset:0;background:#000b;z-index:10;display:grid;place-items:center;padding:16px}.modal[hidden],#game[hidden],#setup[hidden]{display:none!important}.dialog{position:relative;background:#1d2332;border:1px solid #64708b;border-radius:18px;padding:23px;width:min(460px,100%);max-height:90dvh;overflow:auto;box-shadow:0 20px 70px #0009}.dialog h2{font-size:22px;margin:0 35px 15px 0;color:white}.dialog p{font-size:13px;color:#bbc5d7}.dialog button.action{display:block;width:100%;padding:11px;margin:8px 0;background:#333f58;color:white;border:1px solid #64708b;border-radius:9px}.dialog .danger{background:#64323a!important}.close{position:absolute;right:15px;top:13px;border:0;background:transparent;color:white;font-size:21px}.counter-row{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:9px 0;padding:8px;background:#111827;border-radius:10px}.counter-row button{padding:8px 14px;background:#394962;color:white;border:0;border-radius:7px}.counter-row strong{font-size:23px}.dialog input[type=text]{width:100%;padding:10px;background:#111827;color:white;border:1px solid #66738b;border-radius:8px}.dialog input[type=color]{width:100%;height:44px}.dialog input[type=file]{max-width:100%}@media (max-height:430px){.name{font-size:10px}.quick button{min-height:22px;padding:2px 4px}.meta button{min-height:22px;padding:2px 5px}.life-value{font-size:clamp(31px,12vh,70px)}.player-content{padding:2px}.meta{margin-top:1px}}@media(max-width:400px){.quick{gap:2px}.quick button{padding:3px 2px}.meta{gap:3px}.meta button{padding:3px 5px}}
 
-/* Distribuciones para móviles en vertical: cuatro lados de la mesa. */
-#board{position:relative;display:block;padding:0;gap:0;overflow:hidden}
-.player{position:absolute;border:2px solid #0c0d12;display:flex;align-items:stretch;justify-content:stretch}
-.player-content{width:100%;min-height:0}
-.name{cursor:pointer;max-width:94%;padding:4px 8px;border-radius:6px;background:#0003;flex-shrink:0}
-.quick{max-width:none;width:96%;gap:clamp(3px,1vw,12px)}
-.quick button{min-height:clamp(32px,5.5dvh,58px);font-size:clamp(12px,2.7vw,23px);padding:5px 3px}
-.meta{width:96%;gap:clamp(3px,1vw,12px)}
-.meta button{min-height:clamp(30px,4.5dvh,48px);font-size:clamp(11px,2vw,17px);flex:1;padding:4px 2px}
-.life-value{font-size:clamp(35px,min(13vw,12dvh),116px)}
+
+/* V6: reglas únicas, sin cascadas heredadas. El tablero mantiene proporción móvil en escritorio. */
+html,body,#app{height:100%;height:100dvh;overflow:hidden}
+#game{height:100dvh;width:100%;position:relative;background:#0c0d12;overflow:hidden}
+#board{position:relative;width:100%;height:100%;overflow:hidden;display:block;padding:0}
+.player{position:absolute;overflow:hidden;border:2px solid #0c0d12;min-width:0;min-height:0}
+.player-content{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%) rotate(var(--rotation,0deg));display:grid;grid-template-rows:minmax(0,1fr) minmax(0,2.2fr) auto auto;justify-items:center;align-items:center;box-sizing:border-box;padding:var(--pad,5px);gap:var(--gap,3px);overflow:hidden;max-width:none}
+.name{grid-row:1;align-self:center;justify-self:center;margin:0;max-width:94%;min-width:0;padding:2px 5px;border-radius:5px;background:#0006;cursor:pointer;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:var(--name-font,12px);line-height:1.15;text-align:center;z-index:1}
+.life-row{grid-row:2;display:flex;align-items:center;justify-content:space-between;width:100%;height:100%;min-height:0;overflow:hidden}
+.hit{width:22%;height:100%;font-size:var(--hit-font,22px);flex-shrink:0;min-width:0}
+.life-value{width:56%;font-size:var(--life-font,55px);min-width:0;white-space:nowrap;overflow:visible;line-height:1;text-align:center}
+.quick{grid-row:3;display:flex;width:100%;max-width:none;gap:var(--gap,3px);min-width:0}
+.quick button{height:var(--quick-height,27px);min-height:0;min-width:0;flex:1;padding:1px 2px;font-size:var(--button-font,12px);white-space:nowrap}
+.meta{grid-row:4;display:flex;width:100%;gap:var(--gap,3px);margin:0;min-width:0}
+.meta button{height:var(--meta-height,25px);min-height:0;min-width:0;flex:1;padding:1px 2px;font-size:var(--meta-font,10px);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.menu-button{width:36px;height:36px;left:50%;top:50%;z-index:5}
 .layout-2 .slot-top{left:0;top:0;width:100%;height:50%}
 .layout-2 .slot-bottom{left:0;top:50%;width:100%;height:50%}
 .layout-3 .slot-top-left{left:0;top:0;width:50%;height:50%}
 .layout-3 .slot-top-right{left:50%;top:0;width:50%;height:50%}
 .layout-3 .slot-bottom{left:0;top:50%;width:100%;height:50%}
-/* Cuatro sectores triangulares, uno por cada lado de la mesa. */
-.layout-4 .player{inset:0;border:0}
-.layout-4 .slot-top{clip-path:polygon(0 0,100% 0,50% 50%)}
-.layout-4 .slot-right{clip-path:polygon(100% 0,100% 100%,50% 50%)}
-.layout-4 .slot-bottom{clip-path:polygon(0 100%,100% 100%,50% 50%)}
-.layout-4 .slot-left{clip-path:polygon(0 0,50% 50%,0 100%)}
-.layout-4 .player-content{position:absolute;width:100%;height:100%;padding:0}
-.layout-4 .slot-top .player-content{height:45%;top:0}
-.layout-4 .slot-bottom .player-content{height:45%;bottom:0}
-.layout-4 .slot-left .player-content{width:43%;left:0;top:18%;height:64%}
-.layout-4 .slot-right .player-content{width:43%;right:0;top:18%;height:64%}
-.layout-4 .quick button{min-height:28px;font-size:clamp(10px,2vw,15px)}
-.layout-4 .meta button{min-height:26px;font-size:clamp(9px,1.7vw,13px)}
-.layout-4 .life-value{font-size:clamp(31px,9vw,72px)}
-/* Cinco y seis jugadores: extremos superior/inferior y laterales. */
+.layout-4 .slot-top{left:0;top:0;width:100%;height:25%}
+.layout-4 .slot-left{left:0;top:25%;width:50%;height:50%}
+.layout-4 .slot-right{left:50%;top:25%;width:50%;height:50%}
+.layout-4 .slot-bottom{left:0;top:75%;width:100%;height:25%}
 .layout-5 .slot-top,.layout-6 .slot-top{top:0;left:0;width:100%;height:25%}
 .layout-5 .slot-bottom,.layout-6 .slot-bottom{top:75%;left:0;width:100%;height:25%}
 .layout-5 .slot-left-top,.layout-6 .slot-left-top{left:0;top:25%;width:50%;height:25%}
@@ -37,64 +32,7 @@
 .layout-5 .slot-right{left:50%;top:25%;width:50%;height:50%}
 .layout-6 .slot-right-top{left:50%;top:25%;width:50%;height:25%}
 .layout-6 .slot-right-bottom{left:50%;top:50%;width:50%;height:25%}
-.layout-5 .quick button,.layout-6 .quick button{min-height:24px;font-size:clamp(10px,2vw,14px)}
-.layout-5 .meta button,.layout-6 .meta button{min-height:23px;font-size:clamp(9px,1.8vw,12px)}
-.layout-5 .life-value,.layout-6 .life-value{font-size:clamp(28px,9vw,60px)}
-.layout-5 .name,.layout-6 .name{font-size:clamp(10px,2vw,13px)}
-@media(max-height:700px){.layout-5 .player-content,.layout-6 .player-content{padding:1px}.layout-5 .quick button,.layout-6 .quick button{min-height:20px}.layout-5 .meta button,.layout-6 .meta button{min-height:20px}.layout-5 .name,.layout-6 .name{padding:1px}}
-
-/* V4: tablero estable y casillas rectangulares. */
-html,body,#app,#game,#board{height:100%;height:100dvh;max-height:100dvh;overflow:hidden}
-#board{position:relative;width:100%;height:100%;height:100dvh}
-.player{position:absolute;overflow:hidden}
-.player-content{position:absolute!important;left:50%!important;top:50%!important;right:auto!important;bottom:auto!important;transform:translate(-50%,-50%) rotate(var(--rotation,0deg))!important;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:clamp(2px,.6vh,8px)!important;gap:1px;min-height:0}
-.name{order:0;max-width:94%;margin-top:clamp(3px,1.1vh,12px);margin-bottom:0;padding:2px 6px;flex:0 0 auto;line-height:1.15;font-size:clamp(10px,2.1vw,16px);text-align:center}
-.life-row{order:1;flex:1 1 auto;min-height:0}
-.quick{order:2;flex:0 0 auto}
-.meta{order:3;flex:0 0 auto}
-.layout-3 .slot-top-left,.layout-3 .slot-top-right,.layout-3 .slot-bottom{display:none}
-.layout-3 .slot-left-top{display:flex;left:0;top:0;width:50%;height:33.333333%}
-.layout-3 .slot-left-bottom{display:flex;left:0;top:33.333333%;width:50%;height:33.333333%}
-.layout-3 .slot-right{display:flex;left:50%;top:0;width:50%;height:100%}
-/* Tres jugadores: 1/3 de superficie cada uno, dos a la izquierda y uno a la derecha. */
-.layout-3 .slot-left-top{width:66.666667%;height:50%}
-.layout-3 .slot-left-bottom{width:66.666667%;height:50%;top:50%}
-.layout-3 .slot-right{left:66.666667%;width:33.333333%;height:100%}
-/* Cuatro: arriba/abajo 1/4 cada uno; centro dividido en dos cuartos. */
-.layout-4 .player{inset:auto;border:2px solid #0c0d12;clip-path:none!important}
-.layout-4 .slot-top{top:0;left:0;width:100%;height:25%}
-.layout-4 .slot-bottom{top:75%;left:0;width:100%;height:25%}
-.layout-4 .slot-left{top:25%;left:0;width:50%;height:50%}
-.layout-4 .slot-right{top:25%;left:50%;width:50%;height:50%}
-.layout-4 .player-content{position:absolute;width:auto;height:auto;inset:auto!important}
-/* Los controles laterales se dimensionan después de rotar para evitar recortes. */
-.layout-3 .quick button,.layout-4 .quick button,.layout-5 .quick button,.layout-6 .quick button{min-height:clamp(22px,3.4dvh,40px);font-size:clamp(10px,2.4vw,16px)}
-.layout-3 .meta button,.layout-4 .meta button,.layout-5 .meta button,.layout-6 .meta button{min-height:clamp(22px,3dvh,36px);font-size:clamp(9px,2vw,13px)}
-.layout-3 .life-value,.layout-4 .life-value,.layout-5 .life-value,.layout-6 .life-value{font-size:clamp(28px,min(10vw,10dvh),80px)}
-.layout-5 .slot-right .name{font-size:clamp(10px,2vw,15px)}
-@media (max-height:700px){.layout-3 .name,.layout-4 .name,.layout-5 .name,.layout-6 .name{margin-top:2px}.layout-3 .quick button,.layout-4 .quick button,.layout-5 .quick button,.layout-6 .quick button{min-height:20px}.layout-3 .meta button,.layout-4 .meta button,.layout-5 .meta button,.layout-6 .meta button{min-height:20px}}
-
-/* V5: reconstrucción según esquemas del usuario. Se evita heredar dimensiones de V3/V4. */
-.layout-3 .player,.layout-4 .player{display:flex!important;clip-path:none!important;inset:auto!important;border:2px solid #0c0d12!important}
-.layout-3 .slot-left-top,.layout-3 .slot-left-bottom,.layout-3 .slot-right{display:none!important}
-.layout-3 .slot-top-left{display:flex!important;top:0!important;left:0!important;width:50%!important;height:50%!important}
-.layout-3 .slot-top-right{display:flex!important;top:0!important;left:50%!important;width:50%!important;height:50%!important}
-.layout-3 .slot-bottom{display:flex!important;top:50%!important;left:0!important;width:100%!important;height:50%!important}
-.layout-4 .slot-top{top:0!important;left:0!important;width:100%!important;height:25%!important}
-.layout-4 .slot-left{top:25%!important;left:0!important;width:50%!important;height:50%!important}
-.layout-4 .slot-right{top:25%!important;left:50%!important;width:50%!important;height:50%!important}
-.layout-4 .slot-bottom{top:75%!important;left:0!important;width:100%!important;height:25%!important}
-/* El rectángulo interior se dimensiona en JS intercambiando ancho/alto al girar. */
-.player-content{box-sizing:border-box;display:flex!important;justify-content:space-between!important;gap:0!important;overflow:hidden;padding:3px!important}
-.player-content .name{order:0;flex:0 0 auto;margin:0!important;padding:2px 5px!important;line-height:1.1;max-width:90%;text-align:center;align-self:center;background:#0005;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.player-content .life-row{order:1;flex:1 1 auto;min-height:0;overflow:hidden}
-.player-content .quick{order:2;flex:0 0 auto;max-width:none;width:96%;gap:3px}
-.player-content .meta{order:3;flex:0 0 auto;margin-top:2px;width:96%;gap:3px}
-.player-content .quick button,.player-content .meta button{min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;padding:2px!important;min-height:0!important;line-height:1.1}
-.player-content .quick button{height:var(--quick-height,30px);font-size:var(--button-font,12px)!important}
-.player-content .meta button{height:var(--meta-height,28px);font-size:var(--meta-font,11px)!important}
-.player-content .name{font-size:var(--name-font,12px)!important;height:var(--name-height,22px);display:flex;align-items:center;justify-content:center}
-.player-content .life-value{font-size:var(--life-font,54px)!important;line-height:1}
-.player-content .hit{font-size:var(--hit-font,24px)!important;min-width:0}
-/* Los laterales y los extremos conservan un margen de seguridad para el menú central. */
-.menu-button{width:36px;height:36px}
+@media (min-aspect-ratio: 4/5) and (min-width:650px){
+  #board{width:min(100vw,55dvh);height:100dvh;margin:auto;box-shadow:0 0 0 999px #10121b}
+  .menu-button{left:50%}
+}

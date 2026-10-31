@@ -31,24 +31,27 @@ function fitRotatedPanels(){
   board.querySelectorAll('.player').forEach(panel=>{
     const content=panel.querySelector('.player-content');
     const rotation=panel.style.getPropertyValue('--rotation');
-    const rotated=rotation.includes('90deg') && !rotation.includes('180deg');
+    const rotated=rotation==='90deg'||rotation==='-90deg';
     const w=panel.clientWidth,h=panel.clientHeight;
-    // Tras girar 90°, las dimensiones lógicas deben intercambiarse.
-    const logicalW=rotated?h:w, logicalH=rotated?w:h;
-    content.style.width=logicalW+'px';content.style.height=logicalH+'px';
-    const compact=logicalH<175;
-    const nameH=Math.max(16,Math.min(26,logicalH*.13));
-    const quickH=Math.max(19,Math.min(40,logicalH*.16));
-    const metaH=Math.max(19,Math.min(36,logicalH*.15));
-    const available=Math.max(28,logicalH-nameH-quickH-metaH-16);
-    content.style.setProperty('--name-height',nameH+'px');
+    const cw=Math.max(1,rotated?h:w),ch=Math.max(1,rotated?w:h);
+    content.style.width=cw+'px';content.style.height=ch+'px';
+    const small=Math.min(cw,ch);
+    const pad=Math.max(2,Math.min(8,small*.025));
+    const gap=Math.max(1,Math.min(5,small*.012));
+    const usableH=ch-pad*2-gap*3;
+    const quickH=Math.max(17,Math.min(40,usableH*.135));
+    const metaH=Math.max(17,Math.min(37,usableH*.125));
+    const remaining=Math.max(30,usableH-quickH-metaH);
+    const lifeH=remaining*.68;
+    content.style.setProperty('--pad',pad+'px');
+    content.style.setProperty('--gap',gap+'px');
     content.style.setProperty('--quick-height',quickH+'px');
     content.style.setProperty('--meta-height',metaH+'px');
-    content.style.setProperty('--name-font',Math.max(10,Math.min(16,logicalW/26,nameH*.62))+'px');
-    content.style.setProperty('--button-font',Math.max(10,Math.min(18,logicalW/27,quickH*.52))+'px');
-    content.style.setProperty('--meta-font',Math.max(9,Math.min(14,logicalW/39,metaH*.48))+'px');
-    content.style.setProperty('--life-font',Math.max(27,Math.min(105,available*.76,logicalW*.28))+'px');
-    content.style.setProperty('--hit-font',Math.max(18,Math.min(34,available*.38))+'px');
+    content.style.setProperty('--name-font',Math.max(9,Math.min(17,cw/19,remaining*.15))+'px');
+    content.style.setProperty('--button-font',Math.max(9,Math.min(18,cw/25,quickH*.58))+'px');
+    content.style.setProperty('--meta-font',Math.max(8,Math.min(14,cw/36,metaH*.52))+'px');
+    content.style.setProperty('--life-font',Math.max(25,Math.min(100,lifeH*.8,cw*.31))+'px');
+    content.style.setProperty('--hit-font',Math.max(16,Math.min(32,lifeH*.38))+'px');
   });
 }
 window.addEventListener('resize',()=>{if(!game.hidden)fitRotatedPanels()});
