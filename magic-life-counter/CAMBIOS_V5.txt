@@ -1,0 +1,1 @@
+V5: distribución 2/3/4 según Jugador.pdf; 5/6 conservadas. Ajuste dinámico de nombres, vidas y botones según dimensiones tras giro. Caché v5.

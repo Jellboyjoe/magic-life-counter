@@ -18,7 +18,7 @@ function layout(){const n=players.length;board.className='layout-'+n;board.style
 function placement(panel,i,n){
   const spots={
     2:[['top','180deg'],['bottom','0deg']],
-    3:[['left-top','90deg'],['left-bottom','90deg'],['right','-90deg']],
+    3:[['top-left','90deg'],['top-right','-90deg'],['bottom','0deg']],
     4:[['left','90deg'],['bottom','0deg'],['right','-90deg'],['top','180deg']],
     5:[['left-top','90deg'],['left-bottom','90deg'],['bottom','0deg'],['right','-90deg'],['top','180deg']],
     6:[['left-top','90deg'],['left-bottom','90deg'],['bottom','0deg'],['right-bottom','-90deg'],['right-top','-90deg'],['top','180deg']]
@@ -27,7 +27,30 @@ function placement(panel,i,n){
 }
 function render(){const count=layout();board.innerHTML='';players.forEach((p,i)=>{const panel=document.createElement('section');panel.className='player';panel.dataset.player=i;panel.style.setProperty('--panel',p.color);if(p.image)panel.style.setProperty('--image',`url("${p.image}")`);placement(panel,i,count);
 const content=document.createElement('div');content.className='player-content';const name=document.createElement('div');name.className='name';name.textContent=p.name;name.title='Toca para cambiar el nombre';name.setAttribute('role','button');name.tabIndex=0;name.onclick=()=>openRename(i);name.onkeydown=e=>{if(e.key==='Enter')openRename(i)};const lr=document.createElement('div');lr.className='life-row';const minus=document.createElement('button');minus.className='hit';minus.textContent='−';minus.setAttribute('aria-label',`Restar una vida a ${p.name}`);minus.onclick=()=>change(i,'life',-1);const val=document.createElement('div');val.className='life-value';val.textContent=p.life;const plus=document.createElement('button');plus.className='hit';plus.textContent='+';plus.setAttribute('aria-label',`Sumar una vida a ${p.name}`);plus.onclick=()=>change(i,'life',1);lr.append(minus,val,plus);const quick=document.createElement('div');quick.className='quick';[-5,-10,5,10].forEach(d=>{const b=document.createElement('button');b.textContent=d>0?'+'+d:d;b.onclick=()=>change(i,'life',d);quick.append(b)});const meta=document.createElement('div');meta.className='meta';const poison=document.createElement('button');poison.textContent=`☠ ${p.poison}`;poison.onclick=()=>openPoison(i);const commander=document.createElement('button');commander.textContent='♛ Comandante';commander.onclick=()=>openCommander(i);const customize=document.createElement('button');customize.textContent='🎨';customize.setAttribute('aria-label','Personalizar jugador');customize.onclick=()=>openCustomize(i);meta.append(poison,commander,customize);content.append(name,lr,quick,meta);panel.append(content);board.append(panel)});fitRotatedPanels()}
-function fitRotatedPanels(){board.querySelectorAll('.player').forEach(panel=>{const content=panel.querySelector('.player-content');const rotated=/90deg/.test(panel.style.getPropertyValue('--rotation'));if(!rotated){content.style.width='100%';content.style.height='100%';return}const w=panel.clientWidth,h=panel.clientHeight;content.style.width=h+'px';content.style.height=w+'px'})}
+function fitRotatedPanels(){
+  board.querySelectorAll('.player').forEach(panel=>{
+    const content=panel.querySelector('.player-content');
+    const rotation=panel.style.getPropertyValue('--rotation');
+    const rotated=rotation.includes('90deg') && !rotation.includes('180deg');
+    const w=panel.clientWidth,h=panel.clientHeight;
+    // Tras girar 90°, las dimensiones lógicas deben intercambiarse.
+    const logicalW=rotated?h:w, logicalH=rotated?w:h;
+    content.style.width=logicalW+'px';content.style.height=logicalH+'px';
+    const compact=logicalH<175;
+    const nameH=Math.max(16,Math.min(26,logicalH*.13));
+    const quickH=Math.max(19,Math.min(40,logicalH*.16));
+    const metaH=Math.max(19,Math.min(36,logicalH*.15));
+    const available=Math.max(28,logicalH-nameH-quickH-metaH-16);
+    content.style.setProperty('--name-height',nameH+'px');
+    content.style.setProperty('--quick-height',quickH+'px');
+    content.style.setProperty('--meta-height',metaH+'px');
+    content.style.setProperty('--name-font',Math.max(10,Math.min(16,logicalW/26,nameH*.62))+'px');
+    content.style.setProperty('--button-font',Math.max(10,Math.min(18,logicalW/27,quickH*.52))+'px');
+    content.style.setProperty('--meta-font',Math.max(9,Math.min(14,logicalW/39,metaH*.48))+'px');
+    content.style.setProperty('--life-font',Math.max(27,Math.min(105,available*.76,logicalW*.28))+'px');
+    content.style.setProperty('--hit-font',Math.max(18,Math.min(34,available*.38))+'px');
+  });
+}
 window.addEventListener('resize',()=>{if(!game.hidden)fitRotatedPanels()});
 function openModal(title){modal.hidden=false;modalBody.innerHTML='';const h=document.createElement('h2');h.textContent=title;modalBody.append(h)}
 function addAction(label,fn,danger=false){const b=document.createElement('button');b.className='action'+(danger?' danger':'');b.textContent=label;b.onclick=fn;modalBody.append(b);return b}
