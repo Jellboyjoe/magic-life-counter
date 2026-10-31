@@ -1,0 +1,1 @@
+Magic Life Counter v2: las fotos, nombres y datos de partida se guardan en IndexedDB en el dispositivo. No hay funciones de subida ni sincronización a servidores. No subas imágenes personales al repositorio público. Si borras datos del sitio perderás los perfiles. La aplicación no incorpora copia de seguridad todavía.
